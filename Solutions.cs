@@ -7,9 +7,12 @@ namespace Problems
     [TestClass]
     public class Solutions
     {
+        /// https://practice.geeksforgeeks.org/problems/find-first-set-bit/0
         /// Given an integer an N, write a program to find the position of first set bit 
         /// found from right side in the binary representation of the number.
-        /// https://practice.geeksforgeeks.org/problems/find-first-set-bit/0
+        /// Input: array of integers
+        /// Output: array of integers, each item denoting the position of the first set bit found from
+        /// the right side of the binary representation of the number. If there is no set bit, return 0.
         public int[] FindFirstSetBit(params int[] input)
         {
             int[] output = new int[input.Length];
@@ -18,8 +21,8 @@ namespace Problems
             {
                 for (int j = 0; j < 32; j++)
                 {
-                    // shift bits to the right (bin >> n)
-                    // drop bits, except the last (bin & 1)
+                    // shift bits to the right (n >> j)
+                    // drop bits, except the last (n >> j & 1)
                     // check if it is 1
                     if (1 == (input[i] >> j & 1))
                     {
