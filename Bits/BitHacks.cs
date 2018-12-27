@@ -47,22 +47,24 @@ namespace Problems
     /// http://www.catonmat.net/blog/low-level-bit-hacks/
     public bool CheckIfNthBitSet(int x, int n)
     {
-      // shift the first 1-bit n-1 positions to the left (1 << --n)
-      // eliminate all bits but n-1 th (x & (1<<--n))
+      // shift the first 1-bit n positions to the left (1 << --n)
+      // eliminate all bits but n th (x & (1<<--n))
       // check if result is non-zero
-      return (x & (1 << --n)) > 0;
+      return (x & (1 << n)) > 0;
     }
 
     [TestMethod]
     public void Test_CheckIfNthBitSet()
     {
-      Assert.IsTrue(CheckIfNthBitSet(1, 1));  // 1:  0b 0001
-      Assert.IsTrue(CheckIfNthBitSet(2, 2));  // 2:  0b 0010
-      Assert.IsTrue(CheckIfNthBitSet(3, 1));  // 3:  0b 0011
-      Assert.IsTrue(CheckIfNthBitSet(12, 3)); // 12: 0b 1100
-      Assert.IsTrue(CheckIfNthBitSet(18, 2)); // 18: 0b 1110
-      Assert.IsTrue(CheckIfNthBitSet(48, 5)); // 48: 0b 0011 0000
-      Assert.IsTrue(CheckIfNthBitSet(52, 3)); // 52: 0b 0011 0100
+      Assert.IsTrue(CheckIfNthBitSet(1, 0));  // 1:  0001
+      Assert.IsTrue(CheckIfNthBitSet(2, 1));  // 2:  0010
+      Assert.IsTrue(CheckIfNthBitSet(3, 0));  // 3:  0011
+      Assert.IsTrue(CheckIfNthBitSet(12, 2)); // 12: 1100
+      Assert.IsTrue(CheckIfNthBitSet(18, 1)); // 18: 1110
+      Assert.IsTrue(CheckIfNthBitSet(48, 4)); // 48: 0011 0000
+      Assert.IsTrue(CheckIfNthBitSet(52, 2)); // 52: 0011 0100
+      Assert.IsTrue(CheckIfNthBitSet(122, 3)); // 122: 0111 1010
+      Assert.IsFalse(CheckIfNthBitSet(-33, 5)); //-33: 1101 1111
     }
   }
 }
