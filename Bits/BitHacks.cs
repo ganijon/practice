@@ -21,17 +21,14 @@ namespace Problems
         // Bit Hack #1. Check if the integer is even or odd.
         public bool CheckIfEven(int x)
         {
-            if ((x & 1) == 0)
-            {
-                // x is even
-                return true;
-            }
-            else
-            {
-                // x is odd
-                return false;
-            }
+            return ((x & 1) == 0);
 
+            /*
+                    01111001 (121 in binary)
+                &  00000001   
+                    --------
+                    00000001
+            */
         }
 
         [TestMethod]
@@ -50,6 +47,13 @@ namespace Problems
             // eliminate all bits but n th (x & (1<<--n))
             // check if result is non-zero
             return (x & (1 << n)) > 0;
+
+            /*
+                    11011111     (-33 in binary)
+                &  00100000     (1<<5)
+                    --------
+                    00000000
+            */
         }
 
         [TestMethod]
@@ -64,6 +68,73 @@ namespace Problems
             Assert.IsTrue(CheckIfNthBitSet(52, 2)); // 52: 0011 0100
             Assert.IsTrue(CheckIfNthBitSet(122, 3)); // 122: 0111 1010
             Assert.IsFalse(CheckIfNthBitSet(-33, 5)); //-33: 1101 1111
+        }
+
+        /// Bit Hack #3. Set the n-th bit.!--
+        public int SetTheNthBit(int x, int n)
+        {
+            return x | (1 << n);
+
+            /* 
+                    01111000    (120 in binary)
+                |  00000100    (1<<2)
+                    --------
+                    01111100    
+            */
+        }
+
+        [TestMethod]
+        public void Test_SetTheNthBit()
+        {
+            Assert.IsTrue(CheckIfNthBitSet(SetTheNthBit(1, 1), 1));
+            Assert.IsTrue(CheckIfNthBitSet(SetTheNthBit(2, 2), 2));
+            Assert.IsTrue(CheckIfNthBitSet(SetTheNthBit(3, 3), 3));
+            Assert.IsTrue(CheckIfNthBitSet(SetTheNthBit(-33, 5), 5));
+            Assert.IsTrue(CheckIfNthBitSet(SetTheNthBit(-120, 8), 8));
+        }
+
+        /// Bit Hack #4. Unset the n-th bit.
+        public int UnsetTheNthBit(int x, int n)
+        {
+            return x & ~(1 << n);
+
+            /* 
+                    01111111    (127 in binary)
+                &   11101111    (~(1<<4))
+                    --------
+                    01101111
+            */
+        }
+
+        [TestMethod]
+        public void Test_UnsetTheNthBit()
+        {
+            Assert.IsFalse(CheckIfNthBitSet(UnsetTheNthBit(1, 1), 1));
+            Assert.IsFalse(CheckIfNthBitSet(UnsetTheNthBit(2, 2), 2));
+            Assert.IsFalse(CheckIfNthBitSet(UnsetTheNthBit(3, 3), 3));
+            Assert.IsFalse(CheckIfNthBitSet(UnsetTheNthBit(-33, 5), 5));
+            Assert.IsFalse(CheckIfNthBitSet(UnsetTheNthBit(-120, 8), 8));
+        }
+
+        /// Bit Hack #5. Toggle the n-th bit.
+        public int ToggleTheNthBit(int x, int n)
+        {
+            return x ^ (1 << n);
+
+            /* 
+                    01110101
+                ^   00100000
+                    --------
+                    01010101
+            */
+        }
+
+        [TestMethod]
+        public void Test_ToggleTheNthBit()
+        {
+            Assert.IsTrue(CheckIfNthBitSet(ToggleTheNthBit(1, 1), 1));
+            Assert.IsFalse(CheckIfNthBitSet(ToggleTheNthBit(1, 0), 0));
+
         }
 
         /// Given an integer an N, write a program to find the position of first set bit 
