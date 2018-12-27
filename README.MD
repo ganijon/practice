@@ -1,7 +1,8 @@
 # Problems and Solutions
 
-## [Bit hacks](https://github.com/ganijon/problems/tree/master/Bits)
-
+## Bits
+- [Bit hacks](https://github.com/ganijon/problems/blob/master/Bits/BitHacks.cs)
+- [Power Set](https://github.com/ganijon/problems/blob/master/Bits/PowerSet.cs)
 ## String
 
 ## Array
