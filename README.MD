@@ -1,6 +1,6 @@
 # Problems and Solutions
 
-## Bits
+## [Bit hacks](https://github.com/ganijon/problems/tree/master/Bits)
 
 ## String
 
