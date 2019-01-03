@@ -2,7 +2,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Linq;
 
-namespace Problems
+namespace Problems.Bits
 {
     /// This code inspired by:
     /// http://www.catonmat.net/blog/low-level-bit-hacks
@@ -25,7 +25,7 @@ namespace Problems
 
             /*
                     01111001 (121 in binary)
-                &  00000001   
+                &   00000001   
                     --------
                     00000001
             */
@@ -50,7 +50,7 @@ namespace Problems
 
             /*
                     11011111     (-33 in binary)
-                &  00100000     (1<<5)
+                &   00100000     (1<<5)
                     --------
                     00000000
             */
@@ -77,7 +77,7 @@ namespace Problems
 
             /* 
                     01111000    (120 in binary)
-                |  00000100    (1<<2)
+                |   00000100    (1<<2)
                     --------
                     01111100    
             */
@@ -135,6 +135,35 @@ namespace Problems
             Assert.IsTrue(CheckIfNthBitSet(ToggleTheNthBit(1, 1), 1));
             Assert.IsFalse(CheckIfNthBitSet(ToggleTheNthBit(1, 0), 0));
 
+        }
+
+        /// Bit Hack #6. Turn off the rightmost 1-bit.
+        public int TurnOffRightmost1bit(int x)
+        {
+            return x & (x - 1);
+
+            /*
+            
+            1. x has right-most bit set
+
+                01010111    (x)
+            &   01010110    (x-1)
+                --------
+                01010110
+            2. x has no right-most bit set
+
+                01011000    (x)
+            &   01010111    (x-1)
+                --------
+                01010000
+             */
+        }
+
+        [TestMethod]
+        public void Test_TurnOffRightmost1bit()
+        {
+            Assert.IsFalse(CheckIfNthBitSet(TurnOffRightmost1bit(1), 0));
+            Assert.IsFalse(CheckIfNthBitSet(TurnOffRightmost1bit(2), 0));
         }
 
         /// Given an integer an N, write a program to find the position of first set bit 
