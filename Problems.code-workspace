@@ -5,6 +5,10 @@
 		}
     ],
     "settings": {
-        "editor.tabSize": 4
+        "editor.tabSize": 4,
+        "files.exclude": {
+            "**/bin": true,
+            "**/obj": true
+        }
     }
 }
