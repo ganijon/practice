@@ -1,6 +1,6 @@
-using System;
-using System.Text;
 namespace Problems.Arrays.Rotation {
+    using System.Text;
+    using System;
     using NUnit.Framework;
 
     [TestFixture]
