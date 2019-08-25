@@ -51,7 +51,7 @@ namespace Problems.Strings.Palindrome
         {
 
             //Assert.AreEqual("abcxcba", LongestPalindrome("abcxcba"));
-            Assert.AreEqual("abcxcba", LongestPalindrome("abcxcbaw"));
+            //Assert.AreEqual("abcxcba", LongestPalindrome("abcxcbaw"));
             //Assert.AreEqual("abcxcba", LongestPalindrome("wabcxcba"));
             //Assert.AreEqual("wabcxcbaw", LongestPalindrome("wabcxcbaw"));
 

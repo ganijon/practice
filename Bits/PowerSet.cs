@@ -31,11 +31,9 @@ namespace Problems.Bits
             }
             return powerset;
         }
-
+/*
         [TestMethod]
-        public void TestDoPowerSet()
-        {
-            Assert.IsTrue(DoPowerSet(1, 2)
+        public void TestDoPowerSet() => Assert.IsTrue(DoPowerSet(1, 2)
               .SequenceEqual(new object[]
               {
                   new object[]{},
@@ -43,7 +41,5 @@ namespace Problems.Bits
                   new object[]{2},
                   new object[]{1,2},
               }));
-
-        }
-    }
+*/    }
 }
