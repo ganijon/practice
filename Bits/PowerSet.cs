@@ -7,11 +7,11 @@ namespace Problems.Bits {
     [TestFixture]
     public class PowerSet {
 
-        [TestCase (new int[] { }, ExpectedResult = "{}")]
-        [TestCase (new int[] { 1 }, ExpectedResult = "{}{1}")]
-        [TestCase (new int[] { 1, 2 }, ExpectedResult = "{}{1}{2}{12}")]
-        [TestCase (new int[] { 1, 2, 3 }, ExpectedResult = "{}{1}{2}{12}{3}{13}{23}{123}")]
-        public string DoPowerSet (int[] a) {
+        [TestCase (ExpectedResult = "{}")]
+        [TestCase (1, ExpectedResult = "{}{1}")]
+        [TestCase (1, 2, ExpectedResult = "{}{1}{2}{12}")]
+        [TestCase (1, 2, 3, ExpectedResult = "{}{1}{2}{12}{3}{13}{23}{123}")]
+        public string DoPowerSet (params int[] a) {
             int n = a.Length;
             var p = new int[1 << n][]; // Math.Pow(2,n);
 
