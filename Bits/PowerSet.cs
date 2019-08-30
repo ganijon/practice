@@ -1,45 +1,39 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Text;
+namespace Problems.Bits {
+    using System.Collections.Generic;
+    using System.Linq;
+    using NUnit.Framework;
 
-namespace Problems.Bits
-{
-    [TestClass]
-    public class PowerSet
-    {
-        public object[] DoPowerSet(params object[] input)
-        {
-            int inputSize = input.Length;
-            int powersetSize = (1 << inputSize); // Math.Pow(2,n);
-            var powerset = new object[powersetSize];
+    [TestFixture]
+    public class PowerSet {
 
-            for (int i = 0; i < powersetSize; i++)
-            {
-                var subset = new HashSet<object>();
-                for (int j = 0; j < inputSize; j++)
-                {
+        [TestCase (new int[] { }, ExpectedResult = "{}")]
+        [TestCase (new int[] { 1 }, ExpectedResult = "{}{1}")]
+        [TestCase (new int[] { 1, 2 }, ExpectedResult = "{}{1}{2}{12}")]
+        [TestCase (new int[] { 1, 2, 3 }, ExpectedResult = "{}{1}{2}{12}{3}{13}{23}{123}")]
+        public string DoPowerSet (int[] a) {
+            int n = a.Length;
+            var p = new int[1 << n][]; // Math.Pow(2,n);
+
+            for (int i = 0; i < p.Length; i++) {
+                var subset = new HashSet<int> ();
+                for (int j = 0; j < n; j++) {
                     // bitmask of a jth item in input: (1 << j)
                     // presence of jth item in subset: (i & (1<<j)) 
                     // if non-zero, jth item is present in subset
-                    if ((i & (1 << j)) > 0)
-                    {
-                        subset.Add(input[j]);
+                    if ((i & (1 << j)) > 0) {
+                        subset.Add (a[j]);
                     }
                 }
-                powerset[i] = subset.ToArray();
+                p[i] = subset.ToArray ();
             }
-            return powerset;
+            var sb = new StringBuilder ();
+            foreach (var item in p) {
+                sb.Append ("{");
+                foreach (var i in item) sb.Append (i);
+                sb.Append ("}");
+            }
+            return sb.ToString ();
         }
-/*
-        [TestMethod]
-        public void TestDoPowerSet() => Assert.IsTrue(DoPowerSet(1, 2)
-              .SequenceEqual(new object[]
-              {
-                  new object[]{},
-                  new object[]{1},
-                  new object[]{2},
-                  new object[]{1,2},
-              }));
-*/    }
+    }
 }
