@@ -1,7 +1,7 @@
-using System.Text;
 namespace Problems.Bits {
     using System.Collections.Generic;
     using System.Linq;
+    using System.Text;
     using NUnit.Framework;
 
     [TestFixture]
@@ -27,6 +27,11 @@ namespace Problems.Bits {
                 }
                 p[i] = subset.ToArray ();
             }
+
+            return Print (p);
+        }
+
+        private string Print (int[][] p) {
             var sb = new StringBuilder ();
             foreach (var item in p) {
                 sb.Append ("{");
