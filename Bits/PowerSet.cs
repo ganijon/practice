@@ -11,34 +11,31 @@ namespace Problems.Bits {
         [TestCase (1, ExpectedResult = "{}{1}")]
         [TestCase (1, 2, ExpectedResult = "{}{1}{2}{12}")]
         [TestCase (1, 2, 3, ExpectedResult = "{}{1}{2}{12}{3}{13}{23}{123}")]
-        public string DoPowerSet (params int[] a) {
-            int n = a.Length;
-            var p = new int[1 << n][]; // Math.Pow(2,n);
-
-            for (int i = 0; i < p.Length; i++) {
+        public string DoPowerSet (params int[] input) {
+            int n = input.Length;
+            var pwset = new int[1 << n][]; // (1 << n) = Math.Pow(2,n)
+            for (int i = 0; i < pwset.Length; i++) {
                 var subset = new HashSet<int> ();
                 for (int j = 0; j < n; j++) {
                     // bitmask of a jth item in input: (1 << j)
                     // presence of jth item in subset: (i & (1<<j)) 
                     // if non-zero, jth item is present in subset
-                    if ((i & (1 << j)) > 0) {
-                        subset.Add (a[j]);
-                    }
+                    if ((i & (1 << j)) > 0)
+                        subset.Add (input[j]);
                 }
-                p[i] = subset.ToArray ();
+                pwset[i] = subset.ToArray ();
             }
-
-            return Print (p);
+            return Print (pwset);
         }
 
-        private string Print (int[][] p) {
-            var sb = new StringBuilder ();
-            foreach (var item in p) {
-                sb.Append ("{");
-                foreach (var i in item) sb.Append (i);
-                sb.Append ("}");
+        private string Print (int[][] pwset) {
+            var s = new StringBuilder ();
+            foreach (var arr in pwset) {
+                s.Append ("{");
+                foreach (var i in arr) s.Append (i);
+                s.Append ("}");
             }
-            return sb.ToString ();
+            return s.ToString ();
         }
     }
 }
