@@ -32,24 +32,5 @@ namespace Problems.Arrays.Rotation {
                     return BinSearchRecursive (a, k, l, m - 1);
             }
         }
-
-        [TestCase (new int[] { }, 0, ExpectedResult = -1)]
-        [TestCase (new int[] { 1 }, 0, ExpectedResult = -1)]
-        [TestCase (new int[] { 1, 2 }, 2, ExpectedResult = 1)]
-        [TestCase (new int[] { 1, 2, 3 }, 2, ExpectedResult = 1)]
-        [TestCase (new int[] { 1, 2, 3, 4 }, 2, ExpectedResult = 1)]
-        public int BinarySearch (int[] arr, int key) {
-            int left = 0;
-            int right = arr.Length - 1;
-            while (left <= right) {
-                int mid = (left + right) / 2;
-                if (arr[mid] < key)
-                    left = mid + 1;
-                else if (arr[mid] > key)
-                    right = mid - 1;
-                else return mid;
-            }
-            return -1;
-        }
     }
 }
