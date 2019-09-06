@@ -1,6 +1,10 @@
 namespace Problems.Arrays.Rotation {
     using NUnit.Framework;
 
+    // Given an array, return the maximum possible of sum of i*arr[i] using as many rotations as needed.
+    // https://www.geeksforgeeks.org/find-maximum-value-of-sum-iarri-with-only-rotations-on-given-array-allowed/
+    // Time, Space complexity: O(n), O(1)
+
     [TestFixture]
     public class FindMaxSumByRotation {
 
@@ -11,12 +15,13 @@ namespace Problems.Arrays.Rotation {
         public int FindMaxSum (int[] a) {
 
             // given: A{a,b,c,d},n=4
+            // solution:
             // r=0: s0= 0a+1b+2c+3d
             // r=1: s1= 0d+1a+2b+3c
             // r=2: s2= 0c+1d+2a+3b
             // d1=s1-s0= (0d+1a+2b+3c)-(0a+1b+2c+3d) = a+b+c-3d = a+b+c+d -4d
             // d2=s2-s1= (0c+1d+2a+3b)-(0d+1a+2b+3c) = a+b-3c+d = a+b+c+d -4c              
-            // dj=sj-s{j-1}= a+b+c+d -n*A[n-j]
+            // dj=sj-s{j-1}= a+b+c+d - n*A[n-j] = sum(A) - n*A[n-j]
             // sj=s{j-1}+dj
 
             int n = a.Length;
@@ -38,6 +43,5 @@ namespace Problems.Arrays.Rotation {
 
             return maxsum;
         }
-
     }
 }
